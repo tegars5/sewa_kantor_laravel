@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model; 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -28,19 +28,22 @@ class OfficeSpace extends Model
         'city_id',
     ];
 
-    public function setNameAttribure($value)
+    public function setNameAttribute($value)
     {
         $this->attributes['name'] = $value;
         $this->attributes['slug'] = Str::slug($value);
     }
+
     public function photos(): HasMany
     {
         return $this->hasMany(OfficeSpacePhoto::class);
     }
+
     public function benefits(): HasMany
     {
         return $this->hasMany(OfficeBenefit::class);
     }
+
     public function city(): BelongsTo
     {
         return $this->belongsTo(City::class);

@@ -17,13 +17,13 @@ class City extends Model
         'slug',
         'photo',
     ];
-    public function setNameAttribure($value)
+    public function setNameAttribute($value)
     {
         $this->attributes['name'] = $value;
         $this->attributes['slug'] = Str::slug($value);
     }
 
-    public function officeSpaces(): HasMany   
+    public function officeSpaces(): HasMany
     {
         return $this->hasMany(OfficeSpace::class);
     }
