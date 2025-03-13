@@ -19,13 +19,15 @@ class OfficeSpaceResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'slug' => $this->slug,
+            'address' => $this->address,
             'duration' => $this->duration,
             'price' => $this->price,
             'thumbnail' => $this->thumbnail,
             'about' => $this->about,
+            'rating' => $this->rating,
             'city' => new CityResource($this->whenLoaded('city')),
             'photos' => OfficeSpacePhotoResource::collection($this->whenLoaded('photos')),
-            'benefit' => OfficeSpaceBenefitResource::collection($this->whenLoaded('benefits')),
+            'benefits' => OfficeSpaceBenefitResource::collection($this->whenLoaded('benefits')),
         ];
     }
 }

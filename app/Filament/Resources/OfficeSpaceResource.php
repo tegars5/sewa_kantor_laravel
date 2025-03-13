@@ -86,6 +86,13 @@ class OfficeSpaceResource extends Resource
                         false => 'Available',
                     ])
                     ->required(),
+                Forms\Components\TextInput::make('rating')
+                    ->required()
+                    ->numeric()
+                    ->minValue(0)
+                    ->maxValue(5)
+                    ->step(0.1),
+
             ]);
     }
 
@@ -107,9 +114,11 @@ class OfficeSpaceResource extends Resource
                     ->trueIcon('heroicon-o-x-circle')
                     ->falseIcon('heroicon-o-check-circle')
 
-                    ->label('Available')
+                    ->label('Available'),
 
-
+                Tables\Columns\TextColumn::make('rating')
+                    ->label('Rating')
+                    ->sortable(),
             ])
             ->filters([
                 //
