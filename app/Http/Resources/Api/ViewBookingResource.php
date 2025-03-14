@@ -22,9 +22,9 @@ class ViewBookingResource extends JsonResource
             'is_paid' => $this->is_paid,
             'duration' => $this->duration,
             'total_amount' => $this->total_amount,
-            'start_at' => $this->start_at,
+            'started_at' => $this->started_at,
             'ended_at' => $this->ended_at,
-            'officeSpace' => $this->whenLoaded('officeSpace'),
+            'office' => $this->whenLoaded('officeSpace'),
         ];
     }
 }
