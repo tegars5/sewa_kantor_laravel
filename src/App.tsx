@@ -14,7 +14,7 @@ function App() {
         <Route path="/office/:slug" element={<Details />} />
         <Route path="/office/:slug/book" element={<BookOffice />} />
         <Route path="/city/:slug" element={<CityDetails />} />
-        <Route path="/succes-booking" element={<SuccessBooking />} />
+        <Route path="/success-booking" element={<SuccessBooking />} />
         <Route path="/check-booking" element={<CheckBooking />} />
       </Routes>
     </BrowserRouter>

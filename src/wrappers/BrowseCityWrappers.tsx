@@ -14,18 +14,21 @@ export default function BrowseCity() {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/api/cities", {
+      .get(`${import.meta.env.VITE_API_URL}/cities`, {
         headers: {
-          "X-API-KEY": "adkjhdhiuashdkjhweqwad",
+          "X-API-KEY": import.meta.env.VITE_API_KEY,
         },
       })
       .then((response) => {
-        console.log(response.data);
-        setCities(response.data.data);
+        console.log("Cities data:", response.data);
+        // Handle both response structures: {data: [...]} or {"0": [...]}
+        const citiesData = response.data.data || response.data["0"] || response.data;
+        setCities(Array.isArray(citiesData) ? citiesData : []);
         setLoading(false);
       })
       .catch((error) => {
-        setError(error);
+        console.error("Error fetching cities:", error);
+        setError(error.message || "Failed to load cities");
         setLoading(false);
       });
   }, []);

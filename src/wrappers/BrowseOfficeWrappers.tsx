@@ -13,17 +13,21 @@ export default function BrowseOfficeWrappers() {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/api/offices", {
+      .get(`${import.meta.env.VITE_API_URL}/offices`, {
         headers: {
-          "X-API-KEY": "adkjhdhiuashdkjhweqwad",
+          "X-API-KEY": import.meta.env.VITE_API_KEY,
         },
       })
       .then((response) => {
-        setCities(response.data.data);
+        console.log("Offices data:", response.data);
+        // Handle response structure
+        const officesData = response.data.data || response.data;
+        setCities(Array.isArray(officesData) ? officesData : []);
         setLoading(false);
       })
       .catch((error) => {
-        setError(error);
+        console.error("Error fetching offices:", error);
+        setError(error.message || "Failed to load offices");
         setLoading(false);
       });
   }, []);
